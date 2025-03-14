@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import { Colors } from '../utils/Colors';
+import { S, VS, MS } from '../utils/scalingUtils';
 
 interface User {
     id: number;
@@ -24,34 +25,34 @@ const StatusCard: React.FC<StatusCardProps> = ({ item }) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: 70,
-        height: 70,
-        borderRadius: 50,
+        width: S(65),
+        height: S(65),
+        borderRadius: S(50),
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 10,
+        marginLeft: S(10),
         borderWidth: 0,
     },
     newBorder: {
-        borderWidth: 2,
+        borderWidth: S(2),
         borderColor: Colors.greyColor,
     },
     newTag: {
         backgroundColor: Colors.primaryColor,
-        paddingHorizontal: 7,
-        paddingVertical: 3,
+        paddingHorizontal: S(7),
+        paddingVertical: VS(3),
         color: Colors.whiteColor,
-        borderRadius: 50,
-        fontSize: 8,
+        borderRadius: S(50),
+        fontSize: MS(8),
         position: 'absolute',
         zIndex: 10,
-        top: -11,
-        right: -12,
+        top: VS(-11),
+        right: S(-12),
     },
     image: {
-        width: 60,
-        height: 60,
-        borderRadius: 50,
+        width: S(55),
+        height: S(55),
+        borderRadius: S(50),
     },
 });
 

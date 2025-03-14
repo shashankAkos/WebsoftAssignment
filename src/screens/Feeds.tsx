@@ -7,6 +7,7 @@ import { Colors } from '../utils/Colors';
 import FeedPostCard from '../component/FeedPostCard';
 import { API_BASE_URL, CLIENT_ID, CLIENT_SECRET } from '../utils/Routes';
 import axios from 'axios';
+import { MS, S, VS } from '../utils/scalingUtils';
 
 interface User {
   id: number;
@@ -20,9 +21,25 @@ interface HashTag {
   name: string;
 }
 
+interface FeedItem {
+  id: number;
+  user: {
+    id: number;
+    name: string;
+    avatar: string;
+  };
+  createdAt: string;
+  text?: string;
+  files?: { url: string; type: string }[];
+}
+
+interface FeedResponse {
+  feeds: FeedItem[];
+}
+
 const Feeds = () => {
   const [selectedHash, setSelectedHash] = useState<HashTag>(HashData[0]);
-  const [feedData, setFeedData] = useState([]);
+  const [feedData, setFeedData] = useState<FeedResponse | null>(null);
 
   const getFeedData = async () => {
     try {
@@ -51,7 +68,9 @@ const Feeds = () => {
   return (
     <>
       <CommonHeader backIcon searchIcon cameraIcon title="Ankita" menuIcon />
-      <ScrollView style={styles.scrollContainer}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.scrollContainer}>
         <FlatList
           horizontal
           nestedScrollEnabled
@@ -95,20 +114,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   horizontalList: {
-    paddingLeft: 10,
-    paddingVertical: 15,
+    paddingLeft: S(10),
+    paddingVertical: VS(15),
   },
   hashHorizontalList: {
-    paddingLeft: 10,
+    paddingLeft: S(10),
   },
   hashTagContainer: {
-    marginLeft: 10,
-    marginBottom: 10,
+    marginLeft: S(10),
+    marginBottom: VS(10),
   },
   hashTagText: {
-    fontSize: 24,
+    fontSize: MS(24),
     fontWeight: '600',
-    letterSpacing: 0.5,
+    letterSpacing: S(0.5),
     color: Colors.blackColor,
   },
   selectedHashTag: {
