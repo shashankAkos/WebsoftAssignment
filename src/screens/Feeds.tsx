@@ -1,4 +1,4 @@
-import { View, Text, FlatList, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, ScrollView, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import CommonHeader from '../component/CommonHeader';
 import { HashData, UsersData } from '../utils/Data';
@@ -67,41 +67,41 @@ const Feeds = () => {
 
   return (
     <>
-      <CommonHeader backIcon searchIcon cameraIcon title="Ankita" menuIcon />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={styles.scrollContainer}>
-        <FlatList
-          horizontal
-          nestedScrollEnabled
-          data={UsersData}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.horizontalList}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <StatusCard item={item} />}
-        />
-        <FlatList
-          horizontal
-          data={HashData}
-          nestedScrollEnabled
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.hashHorizontalList}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => setSelectedHash(item)} style={styles.hashTagContainer}>
-              <Text style={[styles.hashTagText, selectedHash.id === item.id && styles.selectedHashTag]}>
-                #{item.name}
-              </Text>
-            </TouchableOpacity>
-          )}
-        />
-        <FlatList
-          nestedScrollEnabled
-          data={feedData?.feeds}
+        <CommonHeader backIcon searchIcon cameraIcon title="Ankita" menuIcon />
+        <ScrollView
           showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => <FeedPostCard item={item} />}
-        />
-      </ScrollView>
+          style={styles.scrollContainer}>
+          <FlatList
+            horizontal
+            nestedScrollEnabled
+            data={UsersData}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.horizontalList}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <StatusCard item={item} />}
+          />
+          <FlatList
+            horizontal
+            data={HashData}
+            nestedScrollEnabled
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.hashHorizontalList}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => setSelectedHash(item)} style={styles.hashTagContainer}>
+                <Text style={[styles.hashTagText, selectedHash.id === item.id && styles.selectedHashTag]}>
+                  #{item.name}
+                </Text>
+              </TouchableOpacity>
+            )}
+          />
+          <FlatList
+            data={feedData?.feeds}
+            nestedScrollEnabled={true}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => <FeedPostCard item={item} />}
+          />
+        </ScrollView>
     </>
   );
 };

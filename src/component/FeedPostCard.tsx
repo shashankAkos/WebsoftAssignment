@@ -1,4 +1,4 @@
-import { View, Text, Image, Dimensions, Platform, StyleSheet } from 'react-native'
+import { View, Text, Image, Dimensions, StyleSheet } from 'react-native'
 import React, { useRef } from 'react'
 import { GlobeIcon, HeartIcon, ReplyIcon } from '../utils/Icons'
 import { formatCreatedAt } from '../utils/Functions'
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     videoContainer: {
         borderRadius: 20,
         marginVertical: 20,
-        overflow: Platform.OS === 'ios' ? 'hidden' : 'visible',
+        overflow: 'hidden',
         backgroundColor: '#000',
     },
     video: {

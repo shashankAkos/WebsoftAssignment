@@ -1,8 +1,8 @@
-import { SafeAreaView } from 'react-native'
 import React from 'react'
 import AppNavigator from './src/navigations/AppNavigator'
 import { NavigationContainer } from '@react-navigation/native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const App = () => {
   return (
